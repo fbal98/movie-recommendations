@@ -11,3 +11,6 @@ A web app that recommends movies to users
 ## Design
   You can find the intital wireframe [here](https://www.figma.com/file/iRsEnmVpQE0yEYnmgXr2kD/Movie-Recommendation?node-id=0%3A1)
   
+
+## recommendation model
+https://github.com/fbal98/movie-recommendations/blob/main/recommendation_model_workin.ipynb
