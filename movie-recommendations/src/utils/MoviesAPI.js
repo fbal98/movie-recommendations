@@ -13,7 +13,7 @@ const headers = {
 export const getGenreList = () =>
   fetch(`${api_url}/genre/movie/list`, { headers })
     .then((res) => res.json())
-    .then((data) => console.log(data));
+    .catch((e) => console.log(e));
 
 export const getMoviesByGenre = (genre) =>
   fetch(`${api_url}/discover/movie?&with_genres=${genre}`, { headers })
