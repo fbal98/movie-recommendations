@@ -1,0 +1,69 @@
+.MovieContainer {
+  height: 207px;
+  width: 150px;
+  background-color: #aea1a1;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+}
+
+.MovieContainer:hover img {
+  opacity: 0.5;
+}
+.MovieContainer:hover .icons {
+  opacity: 1;
+}
+
+.MovieContainer img {
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+  transition: opacity 100ms ease-in-out;
+}
+
+.MovieContainer div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  justify-content: center;
+  z-index: 999;
+  align-items: center;
+}
+.MovieContainer .icons {
+  display: flex;
+  position: absolute;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 100ms ease-in-out;
+}
+
+.MovieContainer .icon {
+  padding: 0;
+  font-size: 20px;
+  z-index: 999;
+  transition: color 230ms ease-in-out;
+}
+
+.MovieContainer .icon:nth-child(1),
+.MovieContainer .icon:nth-child(2) {
+  padding-bottom: 10px;
+}
+.MovieContainer .icons #like:hover {
+  color: rgb(13, 255, 13);
+  opacity: 1;
+}
+.MovieContainer .icons #disLike:hover {
+  color: rgb(236, 25, 10);
+  opacity: 1;
+}
+.MovieContainer .icons #link:hover {
+  color: rgb(141, 141, 141);
+  font-weight: 900;
+  opacity: 1;
+}
