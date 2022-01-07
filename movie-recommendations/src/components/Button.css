@@ -1,0 +1,15 @@
+.container{
+    width: 400px;
+    background: #D8373B;
+    border-radius: 35px;
+    font-family: 'Rubik';
+    font-weight: 600;
+    height: 50px;
+    font-size: 30px;
+    color: #F3F3F3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
