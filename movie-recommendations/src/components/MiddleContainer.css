@@ -1,10 +1,11 @@
 .main {
   width: 80%;
-  background-color: #c4c4c4;
+  background-color: #c4c4c48f;
   margin: 0;
   border-radius: 30px;
   padding: 25px;
-  opacity: 0.97;
+  position: absolute;
+  top: 150px;
 }
 
 .main div {
