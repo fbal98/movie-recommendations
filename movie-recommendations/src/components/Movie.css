@@ -1,10 +1,13 @@
 .MovieContainer {
+  height: 207px;
+  width: 150px;
   max-height: 207px;
   max-width: 150px;
   background-color: #aea1a1;
   border-radius: 15px;
   cursor: pointer;
   position: relative;
+  margin: 5px;
 }
 
 .MovieContainer:hover img {
