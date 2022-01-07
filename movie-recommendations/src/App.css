@@ -1,13 +1,25 @@
-
 @font-face {
-  font-family: 'Rubik';
-  src: url('assests/fonts/Rubik/Rubik-VariableFont_wght.ttf');
+  font-family: "Rubik";
+  src: url("assests/fonts/Rubik/Rubik-VariableFont_wght.ttf");
 }
 
-
-
-*{
+* {
   font-family: Rubik;
   padding: 0;
   margin: 0;
+}
+
+body::before {
+  content: "";
+  display: block;
+  background-image: url("https://i.ibb.co/HF09Prk/photo-1626814026160-2237a95fc5a0.png");
+  background-color: #faf8f5;
+  width: initial;
+  height: 100vh;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+  background-size: cover;
 }
