@@ -14,5 +14,7 @@ A web app that recommends movies to users
   ### Guidlines for design:
   1. any component contains a poster image should follow the following aspect ration => 1:1.5
 
-## recommendation model
-https://github.com/fbal98/movie-recommendations/blob/main/recommendation_model_workin.ipynb
+## recommendation API
+[here](https://github.com/fbal98/movie-recommender-system)
+
+
