@@ -13,19 +13,10 @@ import "./Movie.css";
  *props.objectMetaData.link; is the link of that specific movie/ or alternatively another page in the website to show all details about it.
  */
 
-export default function Movie(props) {
+export default function Genre(props) {
   return (
-    <div className="MovieContainer">
+    <div className="MovieContainer" onClick={props.handleClick}>
       <img src={props.posterSrc} />
-      <div className="icons">
-        <AiFillLike className="icon" id="like" onClick={props.like} />
-        <AiFillDislike className="icon" id="disLike" onClick={props.disLike} />
-        <AiOutlineLink
-          className="icon"
-          id="link"
-          onClick={props.objectMetaData.link}
-        />
-      </div>
     </div>
   );
 }
