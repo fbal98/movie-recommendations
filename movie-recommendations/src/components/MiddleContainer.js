@@ -25,6 +25,24 @@ import "./MiddleContainer.css";
 export default function MiddleContainer(props) {
   const list = props.list;
 
+  if (!list) {
+    return (
+      <div className="main">
+        <div className="titelContainer">
+          <h1>{props.title}</h1>
+        </div>
+
+        <div className="moviesContainer">{props.content}</div>
+        <div className="buttonContainer">
+          <Button
+            title={props.buttonTitle}
+            handleClick={props.onButtonClick}
+            width={200}
+          />
+        </div>
+      </div>
+    );
+  }
   if (list.type == "movies") {
     return (
       <div className="main">
@@ -40,6 +58,7 @@ export default function MiddleContainer(props) {
                 key={m.id}
                 posterSrc={`https://image.tmdb.org/t/p/original/${m.poster_path}`}
                 objectMetaData={true}
+                onLike={() => props.onLike(m)}
               />
             );
           })}
@@ -73,6 +92,29 @@ export default function MiddleContainer(props) {
               />
             );
           })}
+        </div>
+        <div className="buttonContainer">
+          <Button
+            title={props.buttonTitle}
+            handleClick={props.onButtonClick}
+            width={200}
+          />
+        </div>
+      </div>
+    );
+  } else if (list.type == "recommendations") {
+    return (
+      <div className="main">
+        <div className="titelContainer">
+          <h1>{props.title}</h1>
+        </div>
+
+        <div className="moviesContainer">
+          <ul>
+            {list.value.data.map((r) => (
+              <li>{r}</li>
+            ))}
+          </ul>
         </div>
         <div className="buttonContainer">
           <Button

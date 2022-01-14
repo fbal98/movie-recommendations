@@ -3,7 +3,7 @@ import "./App.css";
 import Button from "./components/Button";
 import Movie from "./components/Movie";
 import MiddleContainer from "./components/MiddleContainer";
-
+import GetRecommendations from "./utils/GetRecommendations";
 import {
   getGenreList,
   getMoviesByGenre,
@@ -12,44 +12,44 @@ import {
 } from "./utils/MoviesAPI";
 import { type } from "@testing-library/user-event/dist/type";
 
-const genreDict = {
-  Action: 28,
-  Adventure: 12,
-  Animation: 16,
-  Comedy: 35,
-  Crime: 80,
-  Documentary: 99,
-  Drama: 18,
-  Fantasy: 14,
-  Horror: 27,
-  Mystery: 9648,
-  Romance: 10749,
-  ScienceFiction: 878,
-  Thriller: 53,
-  War: 10752,
-};
-
 function App() {
   //hooks
   const [page, setPage] = useState(1);
   const [genreClicked, setgenreClicked] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [chosenMovie, setChosenMovie] = useState([]);
+  const [lastPage, setLastPage] = useState(false);
+  const [recommended, setRecommended] = useState();
+
   useEffect(() => {
     getMoviesByGenre(genreClicked).then((res) =>
       setMovies({ type: "movies", movies: res.results })
     );
   }, [genreClicked]);
+
   //event handling
   const handleNext = () => {
     setPage(page + 1);
+  };
+  const handleBack = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
   };
   const genreClick = (name) => {
     let genreId = () => {};
     setgenreClicked([...genreClicked, genreDict[name]]);
   };
 
+  const onLike = (movie) => {
+    //to return the title with the release year for better recommendation
+    setChosenMovie([
+      ...chosenMovie,
+      movie.title + " " + movie.release_date.slice(-10, 4),
+    ]);
+  };
+
   if (page === 1) {
-    console.log(genreClicked);
     return (
       <div className="App">
         <MiddleContainer
@@ -62,17 +62,63 @@ function App() {
       </div>
     );
   } else if (page === 2) {
-    return (
-      <div className="App">
-        <MiddleContainer
-          title="Choose the genre that you are most interested to watch"
-          list={movies}
-          buttonTitle="Next"
-          onButtonClick={handleNext}
-          genreClick={genreClick}
-        />
-      </div>
-    );
+    if (movies.movies.length >= 1) {
+      return (
+        <div className="App">
+          <MiddleContainer
+            title="Choose the genre that you are most interested to watch"
+            list={movies}
+            buttonTitle="Next"
+            onButtonClick={handleNext}
+            onLike={onLike}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className="App">
+          <MiddleContainer
+            title="Couldn't find any movies containing every genre you chose!"
+            buttonTitle="Back"
+            onButtonClick={handleBack}
+          />
+        </div>
+      );
+    }
+  } else if (page === 3) {
+    let content = null;
+    if (recommended === undefined) {
+      GetRecommendations(chosenMovie).then((res) => {
+        setRecommended({
+          type: "recommendations",
+          value: res.data,
+        });
+      });
+    }
+    if (recommended) {
+      content = (
+        <div className="App">
+          <MiddleContainer
+            title="I recommend you to watch:"
+            buttonTitle="Back"
+            list={recommended}
+            onButtonClick={handleBack}
+          />
+        </div>
+      );
+    } else {
+      content = (
+        <div className="App">
+          <MiddleContainer
+            title="hmmm let me think..."
+            buttonTitle="Back"
+            onButtonClick={handleBack}
+          />
+        </div>
+      );
+    }
+
+    return content;
   }
 }
 
@@ -151,4 +197,22 @@ const genresObject = {
     },
   ],
 };
+
+const genreDict = {
+  Action: 28,
+  Adventure: 12,
+  Animation: 16,
+  Comedy: 35,
+  Crime: 80,
+  Documentary: 99,
+  Drama: 18,
+  Fantasy: 14,
+  Horror: 27,
+  Mystery: 9648,
+  Romance: 10749,
+  ScienceFiction: 878,
+  Thriller: 53,
+  War: 10752,
+};
+
 export default App;

@@ -18,13 +18,13 @@ export default function Movie(props) {
     <div className="MovieContainer">
       <img src={props.posterSrc} />
       <div className="icons">
-        <AiFillLike className="icon" id="like" onClick={props.like} />
-        <AiFillDislike className="icon" id="disLike" onClick={props.disLike} />
+        <AiFillLike className="icon" id="like" onClick={props.onLike} />
+        {/* <AiFillDislike className="icon" id="disLike" onClick={props.disLike} />
         <AiOutlineLink
           className="icon"
           id="link"
           onClick={props.objectMetaData.link}
-        />
+        /> */}
       </div>
     </div>
   );
