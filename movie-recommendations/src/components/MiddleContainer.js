@@ -112,7 +112,8 @@ export default function MiddleContainer(props) {
           </div>
 
           <div className="moviesContainer">
-            <h5>I am sorry I couldn't find any recommendations</h5>
+            <h4>{"I am sorry I couldn't find any recommendations"}</h4>
+            <h5>{"---My creator should have trained me better :( "}</h5>
           </div>
           <div className="buttonContainer">
             <Button
