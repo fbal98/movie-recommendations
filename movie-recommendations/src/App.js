@@ -19,7 +19,6 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [chosenMovie, setChosenMovie] = useState([]);
   const [recommended, setRecommended] = useState();
-  const [chosen, setChosen] = useState(false);
 
   useEffect(() => {
     getMoviesByGenre(genreClicked).then((res) =>
@@ -35,6 +34,12 @@ function App() {
     if (page > 1) {
       setPage(page - 1);
     }
+  };
+  const handleDone = () => {
+    setPage(1);
+    setgenreClicked([]);
+    setChosenMovie([]);
+    setRecommended();
   };
   const genreClick = (name) => {
     let genreId = () => {};
@@ -102,7 +107,7 @@ function App() {
             title="I recommend you to watch:"
             buttonTitle="Done"
             list={recommended}
-            onButtonClick={handleBack}
+            onButtonClick={handleDone}
           />
         </div>
       );
