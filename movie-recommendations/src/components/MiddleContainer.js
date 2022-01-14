@@ -103,27 +103,51 @@ export default function MiddleContainer(props) {
       </div>
     );
   } else if (list.type == "recommendations") {
-    return (
-      <div className="main">
-        <div className="titelContainer">
-          <h1>{props.title}</h1>
-        </div>
+    let content = null;
+    if (list.value.data.length > 5) {
+      content = (
+        <div className="main">
+          <div className="titelContainer">
+            <h1>{props.title}</h1>
+          </div>
 
-        <div className="moviesContainer">
-          <ul>
-            {list.value.data.map((r) => (
-              <li>{r}</li>
-            ))}
-          </ul>
+          <div className="moviesContainer">
+            <h5>I am sorry I couldn't find any recommendations</h5>
+          </div>
+          <div className="buttonContainer">
+            <Button
+              title={props.buttonTitle}
+              handleClick={props.onButtonClick}
+              width={200}
+            />
+          </div>
         </div>
-        <div className="buttonContainer">
-          <Button
-            title={props.buttonTitle}
-            handleClick={props.onButtonClick}
-            width={200}
-          />
+      );
+    } else {
+      content = (
+        <div className="main">
+          <div className="titelContainer">
+            <h1>{props.title}</h1>
+          </div>
+
+          <div className="moviesContainer">
+            <ul>
+              {list.value.data.map((r) => (
+                <li>{r}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="buttonContainer">
+            <Button
+              title={props.buttonTitle}
+              handleClick={props.onButtonClick}
+              width={200}
+            />
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+
+    return content;
   }
 }
