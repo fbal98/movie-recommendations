@@ -1,5 +1,5 @@
 //imports
-import React from "react";
+import React, { useState } from "react";
 import { AiFillLike, AiOutlineLink, AiFillDislike } from "react-icons/ai";
 //styles
 import "../App.css";
@@ -14,8 +14,16 @@ import "./Movie.css";
  */
 
 export default function Genre(props) {
+  const [chosen, setChosen] = useState(false);
+
   return (
-    <div className="MovieContainer" onClick={props.handleClick}>
+    <div
+      className={`MovieContainer ${chosen ? "chosen" : ""}`}
+      onClick={() => {
+        props.handleClick();
+        setChosen(!chosen);
+      }}
+    >
       <img src={props.posterSrc} />
     </div>
   );

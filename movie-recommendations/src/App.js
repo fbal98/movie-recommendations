@@ -18,8 +18,8 @@ function App() {
   const [genreClicked, setgenreClicked] = useState([]);
   const [movies, setMovies] = useState([]);
   const [chosenMovie, setChosenMovie] = useState([]);
-  const [lastPage, setLastPage] = useState(false);
   const [recommended, setRecommended] = useState();
+  const [chosen, setChosen] = useState(false);
 
   useEffect(() => {
     getMoviesByGenre(genreClicked).then((res) =>
@@ -100,7 +100,7 @@ function App() {
         <div className="App">
           <MiddleContainer
             title="I recommend you to watch:"
-            buttonTitle="Back"
+            buttonTitle="Done"
             list={recommended}
             onButtonClick={handleBack}
           />

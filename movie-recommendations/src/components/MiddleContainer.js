@@ -1,5 +1,5 @@
 //imports
-import React from "react";
+import React, { useState } from "react";
 import Movie from "./Movie";
 import Button from "./Button";
 import Genre from "./Genre";
