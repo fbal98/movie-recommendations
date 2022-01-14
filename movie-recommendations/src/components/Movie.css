@@ -9,7 +9,10 @@
   position: relative;
   margin: 5px;
 }
-
+.chosen {
+  bottom: 10px;
+  box-shadow: 1px 1px 20px rgb(63, 23, 11);
+}
 .MovieContainer:hover img {
   opacity: 0.5;
 }
@@ -49,7 +52,7 @@
   padding: 0;
   font-size: 3em;
   z-index: 999;
-  transition: color 230ms ease-in-out;
+  transition: color 230ms ease-in-out, transform 500ms ease-in-out;
 }
 
 .MovieContainer .icon:nth-child(1),
@@ -59,13 +62,16 @@
 .MovieContainer .icons #like:hover {
   color: rgb(13, 255, 13);
   opacity: 1;
+  transform: rotate(360deg);
 }
 .MovieContainer .icons #disLike:hover {
   color: rgb(236, 25, 10);
   opacity: 1;
+  transform: rotate(360deg);
 }
 .MovieContainer .icons #link:hover {
   color: rgb(141, 141, 141);
   font-weight: 900;
   opacity: 1;
+  transform: rotate(360deg);
 }

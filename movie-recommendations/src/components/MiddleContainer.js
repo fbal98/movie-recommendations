@@ -1,8 +1,8 @@
 //imports
-import React from "react";
+import React, { useState } from "react";
 import Movie from "./Movie";
 import Button from "./Button";
-
+import Genre from "./Genre";
 //styles
 import "../App.css";
 import "./MiddleContainer.css";
@@ -23,32 +23,107 @@ import "./MiddleContainer.css";
  */
 
 export default function MiddleContainer(props) {
-  const movies = props.moviesList;
-  return (
-    <div className="main">
-      <div className="titelContainer">
-        <h1>{props.title}</h1>
-      </div>
+  const list = props.list;
 
-      <div className="moviesContainer">
-        {movies.map((m, index) => {
-          return (
-            <Movie
-              className="movie"
-              key={m.PostUri + index}
-              posterSrc={m.PostUri}
-              objectMetaData={m.objectMetaData}
-            />
-          );
-        })}
+  if (!list) {
+    return (
+      <div className="main">
+        <div className="titelContainer">
+          <h1>{props.title}</h1>
+        </div>
+
+        <div className="moviesContainer">{props.content}</div>
+        <div className="buttonContainer">
+          <Button
+            title={props.buttonTitle}
+            handleClick={props.onButtonClick}
+            width={200}
+          />
+        </div>
       </div>
-      <div className="buttonContainer">
-        <Button
-          title={props.buttonTitle}
-          handleClick={props.onButtonClick}
-          width={200}
-        />
+    );
+  }
+  if (list.type == "movies") {
+    return (
+      <div className="main">
+        <div className="titelContainer">
+          <h1>{props.title}</h1>
+        </div>
+
+        <div className="moviesContainer">
+          {list.movies.map((m, index) => {
+            return (
+              <Movie
+                className="movie"
+                key={m.id}
+                posterSrc={`https://image.tmdb.org/t/p/original/${m.poster_path}`}
+                objectMetaData={true}
+                onLike={() => props.onLike(m)}
+              />
+            );
+          })}
+        </div>
+        <div className="buttonContainer">
+          <Button
+            title={props.buttonTitle}
+            handleClick={props.onButtonClick}
+            width={200}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else if (list.type == "genres") {
+    return (
+      <div className="main">
+        <div className="titelContainer">
+          <h1>{props.title}</h1>
+        </div>
+
+        <div className="moviesContainer">
+          {list.genres.map((g, index) => {
+            return (
+              <Genre
+                className="movie"
+                key={g.PostUri + index}
+                posterSrc={g.PostUri}
+                handleClick={() => {
+                  props.genreClick(g.name);
+                }}
+              />
+            );
+          })}
+        </div>
+        <div className="buttonContainer">
+          <Button
+            title={props.buttonTitle}
+            handleClick={props.onButtonClick}
+            width={200}
+          />
+        </div>
+      </div>
+    );
+  } else if (list.type == "recommendations") {
+    return (
+      <div className="main">
+        <div className="titelContainer">
+          <h1>{props.title}</h1>
+        </div>
+
+        <div className="moviesContainer">
+          <ul>
+            {list.value.data.map((r) => (
+              <li>{r}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="buttonContainer">
+          <Button
+            title={props.buttonTitle}
+            handleClick={props.onButtonClick}
+            width={200}
+          />
+        </div>
+      </div>
+    );
+  }
 }
